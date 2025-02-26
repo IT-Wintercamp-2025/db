@@ -1,0 +1,6 @@
+docker volume create mysql_data
+docker-compose up --build -d
+docker-compose exec db mysql -u root -p
+
+
+rootpassword

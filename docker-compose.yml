@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: ticketsystem-db-1
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: ticketsystem_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"  # MySQL Standardport
+    volumes:
+      - mysql_data:/var/lib/mysql  # Persistente Speicherung der MySQL-Daten
+      - ./backend.sql:/docker-entrypoint-initdb.d/backend.sql  # Importiere die SQL-Datei beim Starten des Containers
+      - ./user.sql:/docker-entrypoint-initdb.d/user.sql
+
+volumes:
+  mysql_data:  # Volumen für MySQL-Daten
