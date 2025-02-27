@@ -10,19 +10,19 @@ services:
      # MYSQL_PASSWORD: backend
    # ports:
      # - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql
+   # volumes:
+     # - db_data:/var/lib/mysql
 
   phpmyadmin:
     image: phpmyadmin  # Use the official phpMyAdmin image
     restart: always
    # ports:
     #  - "8080:80"
-    environment:
+   # environment:
      # PMA_HOST: db
      # PMA_USER: backend
      # PMA_PASSWORD: backend
     platform: linux/arm64  # Specify platform
 
-volumes:
-  db_data:  # Optional: named volume for MySQL data persistence
+# volumes:
+ # db_data:  # Optional: named volume for MySQL data persistence
