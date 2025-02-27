@@ -1,0 +1,28 @@
+services:
+
+  db:
+    image: mariadb:latest  # Use MariaDB
+    restart: always
+    #environment:
+     # MYSQL_ROOT_PASSWORD: backend_ist_toll
+     # MYSQL_DATABASE: datenbank
+     # MYSQL_USER: backend
+     # MYSQL_PASSWORD: backend
+   # ports:
+     # - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin  # Use the official phpMyAdmin image
+    restart: always
+   # ports:
+    #  - "8080:80"
+    environment:
+     # PMA_HOST: db
+     # PMA_USER: backend
+     # PMA_PASSWORD: backend
+    platform: linux/arm64  # Specify platform
+
+volumes:
+  db_data:  # Optional: named volume for MySQL data persistence
