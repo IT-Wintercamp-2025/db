@@ -14,7 +14,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql  # Persistente Speicherung der MySQL-Daten
       - ./backend.sql:/docker-entrypoint-initdb.d/backend.sql  # Importiere die SQL-Datei beim Starten des Containers
-      - ./user.sql:/docker-entrypoint-initdb.d/user.sql
+      #- ./user.sql:/docker-entrypoint-initdb.d/user.sql
 
 volumes:
   mysql_data:  # Volumen für MySQL-Daten
