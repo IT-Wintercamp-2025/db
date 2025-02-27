@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  db:
+    image: mariadb:lts
+    container_name: ticketsystem-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: ticketsystem_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"  # MySQL Standardport
+    volumes:
+      - mysql_data:/var/lib/mysql  # Persistente Speicherung der MySQL-Daten
+      - ./backend.sql:/docker-entrypoint-initdb.d/backend/backend.sql  # Importiere die SQL-Datei beim Starten des Containers
+
+  frontend:
+    image: nginx:latest
+    container_name: nginx-frontend
+    volumes:
+      - ./frontend:/usr/share/nginx/html  # Frontend-Dateien ins NGINX-Verzeichnis
+      - ./nginx.conf:/etc/nginx/nginx.conf  # Konfiguration für NGINX
+    ports:
+      - "80:80"  # Frontend auf Port 80
+    depends_on:
+      - db  # NGINX wartet, bis die Datenbank läuft
+
+volumes:
+  mysql_data:  # Volumen für MySQL-Daten
